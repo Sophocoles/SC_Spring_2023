@@ -1,5 +1,5 @@
 import React from 'react';
-import FhirReact from 'fhir-react';
+import { FhirResource, fhirVersions } from 'fhir-react';
 import {
   BrowserRouter as Router,
   Routes,

@@ -4,6 +4,7 @@
 Start frontend
  * Navigate to *React\sc_react\package.json*
  * ```npm i```
+ * ```npm start```
     
 FHIR component watch command from [fhir-react library](https://github.com/1uphealth/fhir-react)
  * Navigate to *node_modules\fhir-react*
