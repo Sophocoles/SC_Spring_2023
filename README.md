@@ -4,8 +4,6 @@
 Start frontend
  * Navigate to *React\sc_react\package.json*
  * ```npm i```
-
-FHIR-react watch command
     
 FHIR component watch command from [fhir-react library](https://github.com/1uphealth/fhir-react)
  * Navigate to *node_modules\fhir-react*
@@ -16,4 +14,5 @@ FHIR component watch command from [fhir-react library](https://github.com/1uphea
 ## Troubleshooting
 
 NODE_ENV error (https://stackoverflow.com/questions/11928013/node-env-is-not-recognized-as-an-internal-or-external-command-operable-comman)
-    npm install -g win-node-env
+ * From root
+ * ```npm install -g win-node-env```
