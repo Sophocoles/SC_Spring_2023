@@ -1,5 +1,5 @@
-#The GitHub repository for the Spring 2023 StreetCard project.
-###*Collaborators are made up of teams from SER402 and CSE486*
+# The GitHub repository for the Spring 2023 StreetCard project.
+### *Collaborators are made up of teams from SER402 and CSE486*
  
 Start frontend
  * Navigate to *React\sc_react\package.json*
