@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "fhir-react": "^0.3.13"
+    "fhir-react": "^0.3.13",
+    "react-router-dom": "^6.8.1"
   }
 }
