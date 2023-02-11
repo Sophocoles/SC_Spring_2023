@@ -5,6 +5,11 @@ Start frontend
  * Navigate to *React\sc_react*
  * ```npm i```
  * ```npm start```
+
+Use old tier 1
+ * Must install and nav to frontend
+ * ```npm i```
+ * ```npm start```
     
 FHIR component watch command from [fhir-react library](https://github.com/1uphealth/fhir-react)
  * Navigate to *node_modules\fhir-react*
