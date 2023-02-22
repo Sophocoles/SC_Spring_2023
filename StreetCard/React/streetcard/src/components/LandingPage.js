@@ -6,7 +6,7 @@ function LandingPage() {
   return (
     <div className="landing-page">
       <div id="header">Welcome to StreetCard development shortcuts</div>
-      <Link to="/Launcher"><button className="large-center-button">FHIR React App</button></Link>
+      <Link to="/FHIRLandingPage"><button className="large-center-button">FHIR React App</button></Link>
       <button className="large-center-button">Old tier 1</button>
       <button className="large-center-button">Client landing page</button>
       <button className="large-center-button">Wagtail</button>

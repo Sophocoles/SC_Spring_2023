@@ -27,6 +27,8 @@ export default class Launcher extends React.Component {
         const providerKey = event.target.value
         const fhirconfig = config[event.target.value]
 
+        console.log("fhirconfig: ", fhirconfig);
+
         // put your client id in .env.local (ignored by .gitignore)
         const secret_client_id = "REACT_APP_CLIENT_ID_" + providerKey
         if( secret_client_id in process.env ) {
