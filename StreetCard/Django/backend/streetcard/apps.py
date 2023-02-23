@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ScConfig(AppConfig):
+class StreetcardConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'sc'
+    name = 'streetcard'
