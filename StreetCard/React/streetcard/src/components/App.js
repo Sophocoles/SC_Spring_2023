@@ -4,7 +4,6 @@ import Launcher from "./Launcher";
 import Redirect from "./Redirect";
 import LandingPage from "./LandingPage";
 import FHIRLandingPage from "./FHIRLandingPage";
-import FHIRView from "./FHIR/FHIRView";
 //import {default as OtherApp}from "../archive/old_tier_1/SER517-P6-Street-Card-master/frontend/src/App.js"; // Import the other project's App component
 import './App.css'
 
