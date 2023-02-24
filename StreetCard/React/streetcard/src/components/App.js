@@ -4,39 +4,27 @@ import Launcher from "./Launcher";
 import Redirect from "./Redirect";
 import LandingPage from "./LandingPage";
 import FHIRLandingPage from "./FHIRLandingPage";
+import FHIRView from "./FHIR/FHIRView";
 //import {default as OtherApp}from "../archive/old_tier_1/SER517-P6-Street-Card-master/frontend/src/App.js"; // Import the other project's App component
 import './App.css'
+
 
 
 console.log("Inside app"); 
 
 //Give values manually
-const scItems = [
+const streetcardItems = [
   {
-    id: 1,
-    title: "Go to Market",
-    description: "Buy ingredients to prepare dinner",
-    completed: true,
-  },
-  {
-    id: 2,
-    title: "Study",
-    description: "Read Algebra and History textbook for the upcoming test",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Sammy's books",
-    description: "Go to library to return Sammy's books",
-    completed: true,
-  },
-  {
-    id: 4,
-    title: "Article",
-    description: "Write article on how to use Django with React",
-    completed: false,
-  },
-];
+    id:5,
+    name: "cerner",
+    client_id: "taken from .env.local",
+    scope: "openid profile patient/Patient.read patient/AllergyIntolerance.read patient/Condition.read",
+    url: "https://fhir-myrecord.cerner.com/dstu2/ec2458f2-1e24-41c8-b71b-0e701af7583d",
+    redirect_uri:"http://localhost:9000/redirect",
+    patientId: "",
+    patientName: "",
+  }
+]
 //End setup of Django fields
 
 
@@ -52,6 +40,7 @@ function App() {
           <Route path='/redirect' element={<Redirect/>} />
           <Route path='/Launcher' element={<Launcher/>} />
           <Route path='/FHIRLandingPage' element={<FHIRLandingPage/>} />
+          <Route path='/FHIRView' element={<FHIRView/>} />
           <Route path='/' element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
@@ -59,6 +48,13 @@ function App() {
   );
 //Path Routing end
 }
+
+
+
+
+
+
+
 
 
 

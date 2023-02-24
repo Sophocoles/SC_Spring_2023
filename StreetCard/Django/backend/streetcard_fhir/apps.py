@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StreetcardConfig(AppConfig):
+class StreetcardFhirConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'streetcard'
+    name = 'streetcard_fhir'
