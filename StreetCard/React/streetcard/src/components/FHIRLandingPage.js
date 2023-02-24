@@ -7,7 +7,7 @@ function FHIRLandingPage() {
     <div className="landing-page">
       <div id="header">FHIR shortcuts</div>
       <Link to="/Launcher"><button className="large-center-button">FHIR React App</button></Link>
-      <Link to="/FHIRView"><button className="large-center-button">FHIR tests</button></Link>
+      <Link to="/DjangoDisplay"><button className="large-center-button">FHIR tests</button></Link>
     </div>
   );
 }

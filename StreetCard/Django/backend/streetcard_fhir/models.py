@@ -13,4 +13,4 @@ class StreetCard_FHIR(models.Model):
     patientName = models.CharField(max_length=100)
 
     def _str_(self):
-        return self.title
+        return self.name

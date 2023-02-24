@@ -4,7 +4,7 @@ from rest_framework import routers
 from streetcard_fhir import views
 
 router = routers.DefaultRouter()
-router.register(r'streetcard_fhirs', views.StreetCard_FHIRView, 'StreetCard_FHIR')
+router.register(r'streetcard_fhirs', views.StreetCard_FHIRView, 'streetcard_fhir')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

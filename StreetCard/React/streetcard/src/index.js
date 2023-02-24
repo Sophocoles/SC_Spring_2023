@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from './components/FHIR/reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
