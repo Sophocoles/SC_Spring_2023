@@ -37,6 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Wagtail Dependencies
+    'wagtail',
+    'wagtail.admin',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.documents',
+    'wagtail.embeds',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.sites',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtail.images',
+
+    'modelcluster',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +64,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Wagtail Dependencies
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'StreetCard.urls'
@@ -118,8 +138,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media
+# https://docs.wagtail.org/en/stable/getting_started/integrating_into_django.html
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Wagtail Site Name
+# https://docs.wagtail.org/en/stable/getting_started/integrating_into_django.html
+WAGTAIL_SITE_NAME = 'StreetCard Project' # Change this to whatever fits the project
