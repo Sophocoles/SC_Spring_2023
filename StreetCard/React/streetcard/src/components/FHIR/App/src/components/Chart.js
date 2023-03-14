@@ -11,7 +11,7 @@ export default class Chart extends React.Component {
 
         const q = new URLSearchParams();
         q.set("code", "http://loinc.org|55284-4");
-        q.set("subject",  client.getPatientId() || this.context.patientId );
+        q.set("patient",  client.getPatientId() || this.context.patientId );
 
         client
             .request(`Observation?${q}`, {
@@ -43,6 +43,10 @@ export default class Chart extends React.Component {
                 bpMap.diastolic.sort((a, b) => a.x - b.x);
                 this.renderChart(bpMap);
             });
+
+
+    console.log("testo", client);
+
     } // end function
 
     renderChart({ systolic, diastolic }) {

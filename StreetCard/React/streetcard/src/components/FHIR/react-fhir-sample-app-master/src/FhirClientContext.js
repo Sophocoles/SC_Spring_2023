@@ -11,4 +11,4 @@ const context = {
     }
 };
 
-export const SCFhirClientContext = React.createContext(context);
+export const FhirClientContext = React.createContext(context);

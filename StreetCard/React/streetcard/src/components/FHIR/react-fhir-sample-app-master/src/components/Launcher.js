@@ -1,6 +1,6 @@
 import React from "react";
 import { oauth2 as SMART } from "fhirclient";
-import config from "../config"
+import config from "../config.json"
 import { FhirClientContext } from "../FhirClientContext";
 
 console.log("Top of launcher"); 
@@ -27,7 +27,7 @@ export default class Launcher extends React.Component {
         const providerKey = event.target.value
         const fhirconfig = config[event.target.value]
 
-        console.log("fhirconfig: ", fhirconfig);
+        
 
         // put your client id in .env.local (ignored by .gitignore)
         const secret_client_id = "REACT_APP_CLIENT_ID_" + providerKey
@@ -54,9 +54,15 @@ export default class Launcher extends React.Component {
             options.iss = fhirconfig.url
         }
 
+        console.log("secret_client_id: ", secret_client_id);
+        console.log("options: ", options);
+
+
         if(fhirconfig.patientId) {
             context.setPatientId(fhirconfig.patientId)
         }
+
+        console.log("fhirconfig: ", fhirconfig);
 
         alert(`options:  ${JSON.stringify(options)}`)
         SMART.authorize(options);
