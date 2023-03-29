@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+
 from rest_framework import routers
 from streetcard_fhir import views
 from streetcard_fhir.views import ProviderPatientsView, PatientDetailView, ConfigFromDatabaseAPIView, PatientAndEndpointsAPIView
@@ -12,8 +13,8 @@ urlpatterns = [
     path('api/config/', ConfigFromDatabaseAPIView.as_view(), name='config'),
     path('api/', include(router.urls)),
     path("api/patient_and_endpoints/<int:patient_id>/", PatientAndEndpointsAPIView.as_view(), name="patient_and_endpoints"),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('api/provider/patients/', views.ProviderPatientsView.as_view(), name='provider-patients'), # Add this line
+    path('rest-auth/', include('dj_rest_auth.urls')),  # Update this line
+    path('api/provider/patients/', views.ProviderPatientsView.as_view(), name='provider-patients'),  # Add this line
     path('api/patient/<int:pk>/', PatientDetailView.as_view(), name='patient-detail'),
     path('patient/', views.PatientListCreateView.as_view(), name='patient-list-create'),
     path('fhir_endpoint/', views.FhirEndpointListCreateView.as_view(), name='fhir-endpoint-list-create'),

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Launcher from "./FHIR/react-fhir-sample-app-master/src/components/Launcher";
-import Chart from "./FHIR/react-fhir-sample-app-master/src/components/Chart";
 import Redirect from "./FHIR/react-fhir-sample-app-master/src/components/Redirect";
 import ApptResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/ApptResources";
 import EncResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/EncResources";
@@ -15,6 +14,20 @@ import LoginPage from "./provider_app/react/pages/LoginPage";
 import PatientSelect from "./provider_app/react/pages/PatientSelect";
 import Navbar from "./provider_app/react/components/Navbar";
 import PatientOverview from "./provider_app/react/pages/PatientOverview";
+
+import Home from './site_frontend/pages/Home';
+import About from './site_frontend/pages/About';
+import Mission from './site_frontend/pages/Mission';
+import Newsletter from './site_frontend/pages/Newsletter';
+import ServDir from './site_frontend/pages/ServDir';
+import Dash from './site_frontend/pages/Dash';
+import ProviderDash from './site_frontend/pages/ProviderDash';
+import ClientDash from './site_frontend/pages/ClientDash';
+import Stats from './site_frontend/pages/Stats';
+import Help from './site_frontend/pages/Help';
+import Contact from './site_frontend/pages/Contact';
+import Assist from './site_frontend/pages/Assist';
+
 
 function App() {
   // State to track login status
@@ -56,6 +69,20 @@ function App() {
               path="/providerLogin"
               element={<LoginPage onLogin={() => setIsLoggedIn(true)} />}
             />
+
+            <Route path="/" exact element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/mission" element={<Mission />} />
+            <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/servDir" element={<ServDir />} />
+            <Route path="/dash" element={<Dash />} />
+            <Route path='/ProviderDash' element={<ProviderDash />} />
+            <Route path='/ClientDash' element={<ClientDash />} />
+            <Route path="/stats" element={<Stats />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/assist" element={<Assist />} />
+            
             <Route path="/redirect" element={<Redirect />} />
             <Route path="/apptResources" element={<ApptResources />} />
             <Route path="/encResources" element={<EncResources />} />
@@ -67,7 +94,6 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/encounter/:id" element={<EncounterDetail />} />
             <Route path="/patientOverview/:id" element={<PatientOverview />} />
-            <Route exact path="/" component={Chart} />
           </Routes>
         </BrowserRouter>
       </div>
