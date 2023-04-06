@@ -1,7 +1,8 @@
-p
-run after updating models
+Basic setup copied from this tutorial
+    https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
 
-python manage.py makemigrations streetcard_fhir
-python manage.py migrate streetcard_fhir
+This Django project uses pipenv.
+    Related commands
 
-python manage.py runserver
+        pip install pipenv
+        pipenv shell
