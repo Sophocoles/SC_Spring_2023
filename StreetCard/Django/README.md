@@ -5,7 +5,9 @@ User setup according to this tutorial
     https://learndjango.com/tutorials/django-custom-user-model
 
 Auth setup from this tutorial
-    https://inmagik.com/en/blog/django-rest-and-react
+    https://saasitive.com/tutorial/react-token-based-authentication-django/
+
+
 
 This Django project uses pipenv.
     Related commands

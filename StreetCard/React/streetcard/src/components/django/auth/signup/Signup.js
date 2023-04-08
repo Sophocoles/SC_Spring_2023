@@ -19,8 +19,12 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+        user_type: "",
     };
   }
   onChange = e => {
@@ -30,8 +34,12 @@ class Signup extends Component {
   // update function to call the action
   onSignupClick = () => {
     const userData = {
-      username: this.state.username,
-      password: this.state.password
+        username: this.state.username,
+        email: this.state.email,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        password: this.state.password,
+        user_type: this.state.user_type,
     };
     this.props.signupNewUser(userData, this.props.history); // <-- pass history as the second argument
   };
@@ -66,13 +74,61 @@ class Signup extends Component {
                   type="password"
                   name="password"
                   placeholder="Enter password"
-                  value={this.password}
+                  value={this.state.password}
                   onChange={this.onChange}
                 />
                 <Form.Control.Feedback type="invalid">
                   {this.props.createUser.passwordError}
                 </Form.Control.Feedback>
               </Form.Group>
+
+              <Form.Group controlId="emailId">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={this.state.email}
+                onChange={this.onChange}
+                />
+                </Form.Group>
+
+                <Form.Group controlId="firstNameId">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                type="text"
+                name="first_name"
+                placeholder="Enter first name"
+                value={this.state.first_name}
+                onChange={this.onChange}
+                />
+                </Form.Group>
+
+                <Form.Group controlId="lastNameId">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                type="text"
+                name="last_name"
+                placeholder="Enter last name"
+                value={this.state.last_name}
+                onChange={this.onChange}
+                />
+                </Form.Group>
+
+                <Form.Group controlId="userTypeId">
+                <Form.Label>User Type</Form.Label>
+                <Form.Control
+                as="select"
+                name="user_type"
+                value={this.state.user_type}
+                onChange={this.onChange}
+                >
+                <option value="">Choose...</option>
+                <option value="client">Client</option>
+                <option value="provider">Provider</option>
+                </Form.Control>
+                </Form.Group>
+
             </Form>
             <Button color="primary" onClick={this.onSignupClick}>
               Sign up

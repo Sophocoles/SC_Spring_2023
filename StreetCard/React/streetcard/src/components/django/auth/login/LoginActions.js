@@ -6,22 +6,31 @@ import { setAxiosAuthToken, toastOnError } from "../utils/Utils";
 
 
 export const login = (userData, redirectTo, history) => dispatch => {  axios
-    .post("/api/v1/token/login/", userData)
+    .post("http://127.0.0.1:8000/accounts/api/v1/token/login/", userData)
     .then(response => {
       const { auth_token } = response.data;
+      console.log(auth_token, "Token")
       setAxiosAuthToken(auth_token);
       dispatch(setToken(auth_token));
       dispatch(getCurrentUser(redirectTo));
     })
     .catch(error => {
       dispatch(unsetCurrentUser());
-      toastOnError(error);
+      if (error.response) {
+        console.log('Error response data:', error.response.data);
+        toastOnError(error);
+      } else {
+        console.error('Error:', error.message);
+        toast.error('An error occurred. Please try again later.');
+      }
     });
+    
 };
 
 export const getCurrentUser = (redirectTo, history) => dispatch => {  axios
-    .get("/api/v1/users/me/")
+    .get("http://127.0.0.1:8000/accounts/api/v1/users/me/")
     .then(response => {
+      console.log(response.data); // Add this line to check the received data
       const user = {
         username: response.data.username,
         email: response.data.email
@@ -77,7 +86,7 @@ export const unsetCurrentUser = () => dispatch => {
 
 export const logout = (history) => dispatch => {
     axios
-    .post("/api/v1/token/logout/")
+    .post("http://127.0.0.1:8000/accounts/api/v1/token/logout/")
     .then(response => {
       dispatch(unsetCurrentUser());
       history.push("/");

@@ -10,10 +10,15 @@ from rest_framework import viewsets
 from django.db import models
 from rest_framework.permissions import IsAuthenticated
 from streetcard.models import CustomUser
-from streetcard.serializers import CustomUserSerializer
+from streetcard.serializers import CustomUserSerializer, CustomTokenObtainPairSerializer  
 
 from rest_framework.views import APIView
+
+from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 @login_required
 def client_dashboard(request):
@@ -25,6 +30,7 @@ def provider_dashboard(request):
     # Your view logic here
     pass#delete
 
+"""
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -64,6 +70,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+"""
 
 #Get logged-in user's information
 
@@ -108,3 +115,34 @@ class MeView(APIView):
     def get(self, request):
         serializer = CustomUserSerializer(request.user)
         return Response(serializer.data)
+
+@api_view(["POST"])
+def signup(request):
+    serializer = CustomUserSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        email = request.data.get("email")
+        password = request.data.get("password")
+        print("User's password: ",password)
+        if user:
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(["POST"])
+def login_view(request):
+    print("Login view")
+    email = request.data.get("email")
+    password = request.data.get("password")
+    user = authenticate(email=email, password=password)
+    print("User:", user)
+    if user:
+        serializer = CustomUserSerializer(user)
+        print("Token received:", serializer.data["access"])
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response({"error": "Invalid Credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer  # Update this line
+    def post(self, request, *args, **kwargs):
+        print(request.data, "test")  # Print the received data
+        return super().post(request, *args, **kwargs)

@@ -130,6 +130,7 @@ LOGOUT_REDIRECT_URL = "home"
 # Allows us to use axios to display Django forms in React frontend
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 REST_FRAMEWORK = {
@@ -138,4 +139,10 @@ REST_FRAMEWORK = {
     ),
     # ...
 }
+
+AUTHENTICATION_BACKENDS = [
+    'streetcard.backends.EmailBackend',  # Add this line
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 

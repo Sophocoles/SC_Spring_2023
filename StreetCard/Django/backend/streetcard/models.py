@@ -11,6 +11,9 @@ class CustomUser(AbstractUser):
         ('provider', 'Provider'),
     )
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, blank=False)
+    
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
         return self.username

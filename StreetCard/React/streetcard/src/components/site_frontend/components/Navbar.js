@@ -26,7 +26,7 @@ const Navbar = (props) => {
                 <Link className="links" to="/help">How Can I Help?</Link>
                 <Link className="links" to="/contact">Contact</Link>
                 <Link className="links" to="/assist">Technical Assistance</Link>
-                
+                <Link className="links" to="/login">Login / Signup</Link>
                 <div>
                 {props.user}
                 </div>
