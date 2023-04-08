@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 function Mission () {
     return (
         <div className="pageWrapper">
-            <Navbar />
+            
             <div className='missionSection'>
                 <div className='missionHeader'>
                     <h2>Our Mission...</h2>

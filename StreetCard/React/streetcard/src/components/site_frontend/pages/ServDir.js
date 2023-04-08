@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 function ServDir(){
     return(
         <div className="pageWrapper">
-            <Navbar />
+           
             <div className="dirContent">
                 <div className="dirMap">
                     <h2>INSERT MAP HERE</h2>

@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 function Contact (){
     return(
         <div id="pageWrapper">
-            <Navbar />
+           
             <div id="contactContent">
                 <div id="contactLinks">
                     <h3>link based contact, socials etc.</h3>

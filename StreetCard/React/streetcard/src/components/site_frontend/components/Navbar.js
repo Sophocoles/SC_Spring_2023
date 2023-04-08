@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    
+    
+
+
+
+
+  
+      
+
     return ( 
         <nav className="navbar">
             <h1>StreetCard</h1>
@@ -16,6 +26,13 @@ const Navbar = () => {
                 <Link className="links" to="/help">How Can I Help?</Link>
                 <Link className="links" to="/contact">Contact</Link>
                 <Link className="links" to="/assist">Technical Assistance</Link>
+                
+                <div>
+                {props.user}
+                </div>
+
+                
+
             </div>
         </nav>
     );

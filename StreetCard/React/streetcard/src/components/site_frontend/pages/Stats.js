@@ -11,7 +11,7 @@ function Stats () {
     
     return(
         <div className="pageWrapper">
-            <Navbar />
+            
             <div className="statsContent">
                 <h2>Number of Nights Spent at Homeless Shelters Participating in SC?</h2>
                 <p>{numNights}</p>

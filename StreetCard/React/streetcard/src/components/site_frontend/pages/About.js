@@ -9,7 +9,7 @@ import image2 from './images/techHelp.png';
 function About () {
     return (
         <div className='pageWrapper'>
-            <Navbar />
+            
             <div className='aboutSection'>
                 <h2 className='aboutHeader'>StreetCard is Streamlining Benefits Access for Homeless Persons!</h2>
 

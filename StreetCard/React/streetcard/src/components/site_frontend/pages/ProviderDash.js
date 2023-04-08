@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 function ProviderDash() {
     return (
         <div className="pageWrapper">
-            <Navbar />
+            
             <div className="DashboardContent">
                 <div className="tier1">
                     <div className="providerPantries">

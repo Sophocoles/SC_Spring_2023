@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 function Newsletter () {
     return (
         <div id='pageWrapper'>
-            <Navbar />
+            
             <div className='newsContent'>
                 <div className='newsHeader'>
                     <h2> Welcome to the StreetCard Newsletter! </h2>

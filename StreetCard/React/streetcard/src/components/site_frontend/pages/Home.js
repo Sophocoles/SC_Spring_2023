@@ -5,7 +5,7 @@ function Home() {
     return (
         <div className='pageWrapper'>
             <div className='top'>
-                <Navbar />
+                
                 <Slideshow />
             </div>
             <div className="home" style={{ color: `#fff7de` }}>

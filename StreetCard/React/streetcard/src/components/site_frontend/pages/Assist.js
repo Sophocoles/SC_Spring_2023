@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 function Assist (){
     return(
         <div id="pageWrapper">
-            <Navbar />
+           
             <div id="assistContent">
                 <div id="websiteHelp">
                     <h2>Website FAQ</h2>

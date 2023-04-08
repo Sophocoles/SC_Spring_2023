@@ -7,7 +7,7 @@ function Help (){
     
     return(
         <div id="pageWrapper">
-            <Navbar />
+            
             <div id="helpContent">
                 <h2>Homeless Population Count: {popCount}</h2>
 

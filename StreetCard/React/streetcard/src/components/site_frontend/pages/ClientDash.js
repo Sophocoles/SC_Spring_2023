@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 function ClientDash() {
     return (
         <div className="pageWrapper">
-            <Navbar />
+           
             <div className="DashboardContent">
                 <div className="appointmentCalender">
                     <p>This is for the calendar</p>

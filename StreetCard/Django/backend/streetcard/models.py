@@ -6,6 +6,11 @@ class CustomUser(AbstractUser):
     email = models.EmailField(blank=False, unique=True)
     first_name = models.CharField(max_length=30, blank=False)
     last_name = models.CharField(max_length=30, blank=False)
+    USER_TYPE_CHOICES = (
+        ('client', 'Client'),
+        ('provider', 'Provider'),
+    )
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, blank=False)
 
     def __str__(self):
         return self.username
