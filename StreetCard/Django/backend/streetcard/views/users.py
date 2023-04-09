@@ -144,5 +144,6 @@ def login_view(request):
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer  # Update this line
     def post(self, request, *args, **kwargs):
-        print(request.data, "test")  # Print the received data
-        return super().post(request, *args, **kwargs)
+        response = super().post(request, *args, **kwargs)
+        print("Serialized data:", response.data)
+        return response

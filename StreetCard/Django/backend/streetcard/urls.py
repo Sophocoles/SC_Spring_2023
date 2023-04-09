@@ -14,6 +14,7 @@ urlpatterns = [
     #path("signup/", signup, name="signup"),
     path("login/", CustomTokenObtainPairView.as_view(), name="login"),
     path("api/v1/users/", signup, name="signup"),
+    path('api/v1/users/me/', MeView.as_view(), name='my_view'),
     path("api/v1/token/login/", CustomTokenObtainPairView.as_view(), name="token_obtain_pair"),
         
     #Get user info

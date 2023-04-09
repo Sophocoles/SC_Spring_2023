@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,81 +7,80 @@ import { Container, Button, Row, Col, Form } from "react-bootstrap";
 
 import { login } from "./LoginActions.js";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-  
- 
-  componentDidUpdate(prevProps) {
-    if (this.props.auth.isAuthenticated !== prevProps.auth.isAuthenticated && this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+const Login = ({ login, auth }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      navigate("/dashboard");
     }
-  }
+  }, [auth.isAuthenticated, navigate]);
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
   };
 
-  onLoginClick = () => {
+  const onLoginClick = () => {
     const userData = {
-      email: this.state.email,
-      password: this.state.password
+      email: email,
+      password: password
     };
 
-    console.log("Email:", this.state.email);
-    console.log("Password:", this.state.password);
-    this.props.login(userData, "/dashboard");
+    console.log("Email:", email);
+    console.log("Password:", password);
+    login(userData, "/dashboard");
   };
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col md="4">
-            <h1>Login</h1>
-            <Form>
-              <Form.Group controlId="emailId">
-                <Form.Label>Your Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="email"
-                  placeholder="Enter email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </Form.Group>
 
-              <Form.Group controlId="passwordId">
-                <Form.Label>Your password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-              </Form.Group>
-            </Form>
-            <Button color="primary" onClick={this.onLoginClick}>
-              Login
-            </Button>
-            <p className="mt-2">
-              Don't have account? <Link to="/signup">Signup</Link>
-            </p>
-            <p className="mt-2">
-              Forget password?{" "}
-              <Link to="/send_reset_password">Reset Password</Link>
-            </p>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <Row>
+        <Col md="4">
+          <h1>Login</h1>
+          <Form>
+            <Form.Group controlId="emailId">
+              <Form.Label>Your Email</Form.Label>
+              <Form.Control
+                type="text"
+                name="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={onChange}
+              />
+            </Form.Group>
+  
+            <Form.Group controlId="passwordId">
+              <Form.Label>Your password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={onChange}
+              />
+            </Form.Group>
+          </Form>
+          <Button color="primary" onClick={onLoginClick}>
+            Login
+          </Button>
+          <p className="mt-2">
+            Don't have an account? <Link to="/signup">Signup</Link>
+          </p>
+          <p className="mt-2">
+            Forgot password?{" "}
+            <Link to="/send_reset_password">Reset Password</Link>
+          </p>
+        </Col>
+      </Row>
+    </Container>
+  );
+  
+  };
+
 
 //export default Login;
 Login.propTypes = {

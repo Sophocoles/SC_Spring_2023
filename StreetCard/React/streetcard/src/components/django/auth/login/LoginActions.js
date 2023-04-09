@@ -1,17 +1,19 @@
 import axios from "axios";
-// import { push } from "connected-react-router"; // Remove this line
 import { toast } from "react-toastify";
 import { SET_TOKEN, SET_CURRENT_USER, UNSET_CURRENT_USER } from "./LoginTypes";
 import { setAxiosAuthToken, toastOnError } from "../utils/Utils";
+import { useNavigate } from "react-router-dom";
 
 
-export const login = (userData, redirectTo, history) => dispatch => {  axios
+export const login = (userData, redirectTo) => dispatch => {
+  axios
     .post("http://127.0.0.1:8000/accounts/api/v1/token/login/", userData)
     .then(response => {
-      const { auth_token } = response.data;
-      console.log(auth_token, "Token")
-      setAxiosAuthToken(auth_token);
-      dispatch(setToken(auth_token));
+    const { access: accessToken } = response.data;
+      console.log(accessToken, "<---AccessToken");
+      console.log("Response data:", response.data);
+      setAxiosAuthToken(accessToken);
+      dispatch(setToken(accessToken));
       dispatch(getCurrentUser(redirectTo));
     })
     .catch(error => {
@@ -24,47 +26,58 @@ export const login = (userData, redirectTo, history) => dispatch => {  axios
         toast.error('An error occurred. Please try again later.');
       }
     });
-    
 };
 
-export const getCurrentUser = (redirectTo, history) => dispatch => {  axios
-    .get("http://127.0.0.1:8000/accounts/api/v1/users/me/")
-    .then(response => {
-      console.log(response.data); // Add this line to check the received data
-      const user = {
-        username: response.data.username,
-        email: response.data.email
-      };
-      dispatch(setCurrentUser(user, redirectTo));
-    })
-    .catch(error => {
+export const getCurrentUser = (redirectTo) => dispatch => {
+    const token = localStorage.getItem("token");
+    console.log("GetCurrentUser token: ", token)
+    if (!token) {
       dispatch(unsetCurrentUser());
-      if (error.response) {
-        if (
-          error.response.status === 401 &&
-          error.response.hasOwnProperty("data") &&
-          error.response.data.hasOwnProperty("detail") &&
-          error.response.data["detail"] === "User inactive or deleted."
-        ) {
-          history.push("/resend_activation");
+      toast.error('No token found. Please login again.');
+      return;
+    }
+    
+    // Set the token in Axios headers
+    setAxiosAuthToken(token);
+  
+    axios
+      .get("http://127.0.0.1:8000/accounts/api/v1/users/me/")
+      .then(response => {
+        console.log(response.data, "Response");
+        const user = {
+          username: response.data.username,
+          email: response.data.email
+        };
+        dispatch(setCurrentUser(user, redirectTo));
+      })
+      .catch(error => {
+        dispatch(unsetCurrentUser());
+        if (error.response) {
+          console.error('Error response data:', error.response.data);
+          toastOnError(error);
+        } else {
+          console.error('Error:', error.message);
+          toast.error('An error occurred. Please try again later.');
         }
-      } else {
-        toastOnError(error);
-      }
-    });
-};
+      });
+  };
+  
+  
 
-export const setCurrentUser = (user, redirectTo, history) => dispatch => {
+export const setCurrentUser = (user, redirectTo) => dispatch => {
     localStorage.setItem("user", JSON.stringify(user));
-  dispatch({
-    type: SET_CURRENT_USER,
-    payload: user
-  });
-
-  if (redirectTo !== "") {
-    history.push(redirectTo);
-  }
-};
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: user
+    });
+  
+    const navigate = useNavigate();
+  
+    if (redirectTo !== "") {
+      navigate(redirectTo);
+    }
+  };
+  
 
 export const setToken = token => dispatch => {
   setAxiosAuthToken(token);
@@ -84,16 +97,17 @@ export const unsetCurrentUser = () => dispatch => {
   });
 };
 
-export const logout = (history) => dispatch => {
+export const logout = navigate => dispatch => {
     axios
-    .post("http://127.0.0.1:8000/accounts/api/v1/token/logout/")
-    .then(response => {
-      dispatch(unsetCurrentUser());
-      history.push("/");
-      toast.success("Logout successful.");
-    })
-    .catch(error => {
-      dispatch(unsetCurrentUser());
-      toastOnError(error);
-    });
-};
+      .post("http://127.0.0.1:8000/accounts/api/v1/token/logout/")
+      .then(response => {
+        dispatch(unsetCurrentUser());
+        navigate("/");
+        toast.success("Logout successful.");
+      })
+      .catch(error => {
+        dispatch(unsetCurrentUser());
+        toastOnError(error);
+      });
+  };
+  

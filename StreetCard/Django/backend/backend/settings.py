@@ -1,4 +1,5 @@
 from pathlib import Path
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,3 +147,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=15),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=15),
+}
