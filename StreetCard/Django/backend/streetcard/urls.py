@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from .views.users import signup, login_view, get_user_info, CustomUserViewSet, MeView, CustomTokenObtainPairView
+from .views.users import logout, signup, login_view, get_user_info, CustomUserViewSet, MeView, CustomTokenObtainPairView
 from rest_framework.routers import DefaultRouter
 
 
@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('me/', MeView.as_view(), name='me'),
     path('api/v1/login/', login_view, name='api_login'),
+    path("api/v1/token/logout/", logout, name="logout"),
 ]

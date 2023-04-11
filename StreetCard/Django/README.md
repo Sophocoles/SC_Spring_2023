@@ -14,6 +14,7 @@ This Django project uses pipenv.
 
         pip install pipenv
         pipenv shell
+        pip install --upgrade djangorestframework-simplejwt
 
 python manage.py makemigrations streetcard
 python manage.py migrate streetcard

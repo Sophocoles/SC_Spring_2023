@@ -15,7 +15,7 @@ const Login = ({ login, auth }) => {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/about");
     }
   }, [auth.isAuthenticated, navigate]);
 
@@ -33,7 +33,7 @@ const Login = ({ login, auth }) => {
 
     console.log("Email:", email);
     console.log("Password:", password);
-    login(userData, "/dashboard");
+    login(userData, "/about", navigate);
   };
 
   return (

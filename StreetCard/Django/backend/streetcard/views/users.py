@@ -20,6 +20,9 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+
+from django.contrib.auth import logout as django_logout
+
 @login_required
 def client_dashboard(request):
     # Your view logic here
@@ -147,3 +150,8 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
         print("Serialized data:", response.data)
         return response
+
+@api_view(["POST"])
+def logout(request):
+    django_logout(request)
+    return Response({"detail": "Logged out successfully"}, status=status.HTTP_200_OK)

@@ -2,10 +2,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { SET_TOKEN, SET_CURRENT_USER, UNSET_CURRENT_USER } from "./LoginTypes";
 import { setAxiosAuthToken, toastOnError } from "../utils/Utils";
-import { useNavigate } from "react-router-dom";
 
 
-export const login = (userData, redirectTo) => dispatch => {
+export const login = (userData, redirectTo, navigate) => dispatch => {
   axios
     .post("http://127.0.0.1:8000/accounts/api/v1/token/login/", userData)
     .then(response => {
@@ -14,7 +13,7 @@ export const login = (userData, redirectTo) => dispatch => {
       console.log("Response data:", response.data);
       setAxiosAuthToken(accessToken);
       dispatch(setToken(accessToken));
-      dispatch(getCurrentUser(redirectTo));
+      dispatch(getCurrentUser(redirectTo, navigate));
     })
     .catch(error => {
       dispatch(unsetCurrentUser());
@@ -28,7 +27,7 @@ export const login = (userData, redirectTo) => dispatch => {
     });
 };
 
-export const getCurrentUser = (redirectTo) => dispatch => {
+export const getCurrentUser = (redirectTo, navigate) => dispatch => {
     const token = localStorage.getItem("token");
     console.log("GetCurrentUser token: ", token)
     if (!token) {
@@ -46,9 +45,10 @@ export const getCurrentUser = (redirectTo) => dispatch => {
         console.log(response.data, "Response");
         const user = {
           username: response.data.username,
-          email: response.data.email
+          email: response.data.email,
+          userData: response.data
         };
-        dispatch(setCurrentUser(user, redirectTo));
+        dispatch(setCurrentUser(user, redirectTo, navigate));
       })
       .catch(error => {
         dispatch(unsetCurrentUser());
@@ -64,14 +64,12 @@ export const getCurrentUser = (redirectTo) => dispatch => {
   
   
 
-export const setCurrentUser = (user, redirectTo) => dispatch => {
+export const setCurrentUser = (user, redirectTo, navigate) => dispatch => {
     localStorage.setItem("user", JSON.stringify(user));
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
     });
-  
-    const navigate = useNavigate();
   
     if (redirectTo !== "") {
       navigate(redirectTo);
