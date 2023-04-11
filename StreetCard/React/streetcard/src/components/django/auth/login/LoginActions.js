@@ -64,17 +64,23 @@ export const getCurrentUser = (redirectTo, navigate) => dispatch => {
   
   
 
-export const setCurrentUser = (user, redirectTo, navigate) => dispatch => {
+  export const setCurrentUser = (user, redirectTo, navigate) => dispatch => {
     localStorage.setItem("user", JSON.stringify(user));
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
     });
+
+    console.log("Redirectto: ", redirectTo, "User: ", user.userData.user_type);
   
     if (redirectTo !== "") {
-      navigate(redirectTo);
+      if (user.userData.user_type === "provider") {
+        navigate("/help");
+      } else {
+        navigate(redirectTo);
+      }
     }
-  };
+};
   
 
 export const setToken = token => dispatch => {
