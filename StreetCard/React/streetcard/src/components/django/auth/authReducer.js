@@ -4,6 +4,7 @@ const initialState = {
   isAuthenticated: false,
   user: null,
   token: null,
+  providerPatients: [],
 };
 
 const authReducer = (state = initialState, action) => {
@@ -25,6 +26,11 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
         token: null,
+      };
+    case "SET_PROVIDER_PATIENTS":
+      return {
+        ...state,
+        providerPatients: action.payload
       };
     default:
       return state;

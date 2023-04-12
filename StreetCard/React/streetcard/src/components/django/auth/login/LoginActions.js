@@ -72,10 +72,10 @@ export const getCurrentUser = (redirectTo, navigate) => dispatch => {
     });
 
     console.log("Redirectto: ", redirectTo, "User: ", user.userData.user_type);
-  
+  //Redirect to different pages upon login
     if (redirectTo !== "") {
       if (user.userData.user_type === "provider") {
-        navigate("/help");
+        navigate("/providerPatients");
       } else {
         navigate(redirectTo);
       }

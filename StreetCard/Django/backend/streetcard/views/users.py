@@ -23,6 +23,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from django.contrib.auth import logout as django_logout
 
+from rest_framework.decorators import api_view, permission_classes
+
 @login_required
 def client_dashboard(request):
     # Your view logic here
@@ -77,7 +79,8 @@ def login_view(request):
 
 #Get logged-in user's information
 
-@login_required 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
 def get_user_info(request):
    
         user = request.user
@@ -131,7 +134,7 @@ def signup(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(["POST"])
+@api_view(["POST", "GET"])
 def login_view(request):
     print("Login view")
     email = request.data.get("email")

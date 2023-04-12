@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from .views.users import logout, signup, login_view, get_user_info, CustomUserViewSet, MeView, CustomTokenObtainPairView
+from .views.providers import provider_patients
 from rest_framework.routers import DefaultRouter
 
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path('me/', MeView.as_view(), name='me'),
     path('api/v1/login/', login_view, name='api_login'),
     path("api/v1/token/logout/", logout, name="logout"),
+    path('provider_patients/', provider_patients, name='provider_patients'),
 ]

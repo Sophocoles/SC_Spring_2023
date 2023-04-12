@@ -23,3 +23,6 @@ python manage.py runserver
 
 make .env file in root directory and put
     PYTHONPATH=/path/to/templates/streetcard
+
+python manage.py createsuperuser
+

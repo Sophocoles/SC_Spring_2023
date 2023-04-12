@@ -6,8 +6,6 @@ import ApptResources from "./FHIR/react-fhir-sample-app-master/src/components/Re
 import EncResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/EncResources";
 import ObsResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/ObsResources";
 import ResourceProvider from "./FHIR/react-fhir-sample-app-master/src/components/ResourceProvider";
-import LandingPage from "./LandingPage";
-import FHIRLandingPage from "./FHIRLandingPage";
 import DjangoDisplay from "./FHIR/Django/DjangoDisplay";
 import Display from "./FHIR/App/src/components/Display";
 import LoginPage from "./provider_app/react/pages/LoginPage";
@@ -32,6 +30,8 @@ import axios from 'axios';
 import { ToastContainer } from "react-toastify";
 import Signup from "./django/auth/signup/Signup"
 import Login from "./django/auth/login/Login";
+
+import ProviderFHIR from "./provider_FHIR_app/pages/ProviderFHIR";
 
 
 
@@ -68,12 +68,12 @@ function App() {
           <Route path="/encResources" element={<EncResources />} />
           <Route path="/obsResources" element={<ObsResources />} />
           <Route path="/Launcher" element={<Launcher />} />
-          <Route path="/FHIRLandingPage" element={<FHIRLandingPage />} />
           <Route path="/DjangoDisplay" element={<DjangoDisplay />} />
           <Route path="/Display" element={<Display />} />
-          <Route path="/" element={<LandingPage />} />
           <Route path="/encounter/:id" element={<EncounterDetail />} />
           <Route path="/patientOverview/:id" element={<PatientOverview />} />
+
+          <Route path="/providerPatients" element={<ProviderFHIR />} />
         </Routes>
       
     </div>

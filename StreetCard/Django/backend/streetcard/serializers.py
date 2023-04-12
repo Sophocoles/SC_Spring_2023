@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser
+from .models import CustomUser, Provider, Client, Agency
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.models import update_last_login
@@ -33,3 +33,33 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         print("Access token:", data['access'])
 
         return data
+    
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+class ProviderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Provider
+        fields = '__all__'
+        
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+        
+class AgencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Agency
+        fields = '__all__'
+
+class ProviderClientsSerializer(ClientSerializer):
+    user = serializers.SerializerMethodField()
+
+    class Meta(ClientSerializer.Meta):
+        depth = 1
+
+    def get_user(self, obj):
+        user_serializer = UserSerializer(obj.user)
+        return user_serializer.data
