@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser, Provider, Client, Agency
+from .models import CustomUser, Provider, Client, Agency, FhirEndpoint
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.models import update_last_login
@@ -52,6 +52,11 @@ class ClientSerializer(serializers.ModelSerializer):
 class AgencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Agency
+        fields = '__all__'
+
+class EndpointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FhirEndpoint
         fields = '__all__'
 
 class ProviderClientsSerializer(ClientSerializer):

@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import CustomUser, Client, Provider, Agency
+from .models import CustomUser, Client, Provider, Agency, FhirEndpoint
 from .views.providers import provider_patients
 
+class FhirEndpointAdmin(admin.ModelAdmin):
+    list_display = ('name','url')
+    
+    def endpoint_list(self,obj):
+        return ', '.join([endpoint.name for endpoint in obj.endpoints.all()])
+    
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone_number', 'providers_list', 'agencies_list')
 
@@ -35,6 +41,7 @@ class ProviderAdmin(admin.ModelAdmin):
 
     patients_list.short_description = 'Patients'
 
+admin.site.register(FhirEndpoint, FhirEndpointAdmin)
 admin.site.register(CustomUser)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Provider, ProviderAdmin)
