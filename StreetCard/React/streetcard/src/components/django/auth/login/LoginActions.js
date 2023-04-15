@@ -96,22 +96,26 @@ export const unsetCurrentUser = () => dispatch => {
   setAxiosAuthToken("");
   localStorage.removeItem("token");
   localStorage.removeItem("user");
+  localStorage.removeItem("patient");
+  sessionStorage.clear();
   dispatch({
     type: UNSET_CURRENT_USER
   });
 };
 
 export const logout = navigate => dispatch => {
-    axios
-      .post("http://127.0.0.1:8000/accounts/api/v1/token/logout/")
-      .then(response => {
-        dispatch(unsetCurrentUser());
-        navigate("/");
-        toast.success("Logout successful.");
-      })
-      .catch(error => {
-        dispatch(unsetCurrentUser());
-        toastOnError(error);
-      });
-  };
+  axios
+    .post("http://127.0.0.1:8000/accounts/api/v1/token/logout/")
+    .then(response => {
+      dispatch(unsetCurrentUser());
+      navigate("/");
+      toast.success("Logout successful.");
+    })
+    .catch(error => {
+      dispatch(unsetCurrentUser());
+      toastOnError(error);
+    });
+};
+
+
   

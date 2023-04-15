@@ -1,8 +1,10 @@
-import React, { useEffect, useReducer } from "react";
-import axios from "axios";
-import { toastOnError } from "../../django/auth/utils/Utils";
-import { toast } from "react-toastify";
-import { setAxiosAuthToken } from "../../django/auth/utils/Utils";
+import React, { useEffect, useReducer, useContext, useState } from 'react';
+import axios from 'axios';
+import { toastOnError } from '../../django/auth/utils/Utils';
+import { toast } from 'react-toastify';
+import { setAxiosAuthToken } from '../../django/auth/utils/Utils';
+import { Link } from 'react-router-dom';
+import { FhirClientContext } from '../fhir/FhirClientContext';
 
 const ProviderFHIR = () => {
   const initialState = {
@@ -13,13 +15,13 @@ const ProviderFHIR = () => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case "FETCH_SUCCESS":
+      case 'FETCH_SUCCESS':
         return {
           ...state,
           loading: false,
-          patients: action.payload,
+          patients: action.payload.patients,
         };
-      case "FETCH_ERROR":
+      case 'FETCH_ERROR':
         return {
           ...state,
           loading: false,
@@ -31,9 +33,12 @@ const ProviderFHIR = () => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { patientId } = useContext(FhirClientContext); // Get the patientId from the context
+  const [patientData, setPatientData] = useState(null);
+  const [selectedEndpoint, setSelectedEndpoint] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (!token) {
       toast.error('No token found. Please login again.');
       return;
@@ -69,12 +74,45 @@ const ProviderFHIR = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handlePatientClick = (patient, endpoint) => {
+    // Save patient data and selected endpoint to local storage
+    localStorage.setItem('patient', JSON.stringify(patient));
+    setSelectedEndpoint(endpoint);
+    setPatientData(patient);
+  }
+
   return (
     <div>
       <h1>Provider Patients</h1>
-      <pre>{JSON.stringify(patients, null, 2)}</pre>
+      <ul>
+        {patients.map((patient, index) => (
+          <li key={index}>
+            <details>
+              <summary>
+                {patient.first_name} {patient.last_name} ({patient.endpoints.length} endpoints)
+              </summary>
+              <ul>
+                {patient.endpoints.map((endpoint, endpointIndex) => (
+                  <li key={endpointIndex}>
+                    {endpoint.name}:{" "}
+                    <Link
+                      to={{
+                        pathname: `/patientOverview`,
+                        state: { patient, endpoint },
+                      }}
+                      onClick={() => handlePatientClick(patient, endpoint)}
+                    >
+                      {endpoint.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
+                    }  
 
 export default ProviderFHIR;

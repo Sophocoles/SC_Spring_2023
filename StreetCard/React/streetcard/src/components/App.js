@@ -10,7 +10,6 @@ import DjangoDisplay from "./FHIR/Django/DjangoDisplay";
 import Display from "./FHIR/App/src/components/Display";
 import LoginPage from "./provider_app/react/pages/LoginPage";
 import PatientSelect from "./provider_app/react/pages/PatientSelect";
-import PatientOverview from "./provider_app/react/pages/PatientOverview";
 
 import Home from './site_frontend/pages/Home';
 import About from './site_frontend/pages/About';
@@ -32,6 +31,7 @@ import Signup from "./django/auth/signup/Signup"
 import Login from "./django/auth/login/Login";
 
 import ProviderFHIR from "./provider_FHIR_app/pages/ProviderFHIR";
+import PatientOverview from "./provider_FHIR_app/pages/PatientOverview";
 
 
 
@@ -71,7 +71,7 @@ function App() {
           <Route path="/DjangoDisplay" element={<DjangoDisplay />} />
           <Route path="/Display" element={<Display />} />
           <Route path="/encounter/:id" element={<EncounterDetail />} />
-          <Route path="/patientOverview/:id" element={<PatientOverview />} />
+          <Route path="/patientOverview" element={<PatientOverview />} />
 
           <Route path="/providerPatients" element={<ProviderFHIR />} />
         </Routes>

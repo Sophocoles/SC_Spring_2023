@@ -9,6 +9,9 @@ class FhirEndpoint(models.Model):
     scope = models.CharField(max_length=1000)
     agencies = models.ManyToManyField('Agency', blank=True)
 
+    #Todo: Make more secure
+    #patient_ids = models.CharField(max_length=100, blank=True, null=True) # New field for patient ID
+
     def __str__(self):
         return self.name
 
@@ -43,6 +46,9 @@ class Client(models.Model):
     phone_number = models.CharField(max_length=10, blank=True)
     providers = models.ManyToManyField('Provider', blank=True)
     agencies = models.ManyToManyField(Agency, related_name='agency_clients', blank=True)
+    
+    #ToDo: Replace with either many to many id field or more secure method
+    cerner_sandbox_patientId = models.CharField(max_length=100, blank=True, null=True) # New field for patient ID
     
     def get_first_name(self, obj):
         return obj.user.first_name

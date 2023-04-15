@@ -59,6 +59,7 @@ class EndpointSerializer(serializers.ModelSerializer):
         model = FhirEndpoint
         fields = '__all__'
 
+#ToDo delete
 class ProviderClientsSerializer(ClientSerializer):
     user = serializers.SerializerMethodField()
 
@@ -68,3 +69,36 @@ class ProviderClientsSerializer(ClientSerializer):
     def get_user(self, obj):
         user_serializer = UserSerializer(obj.user)
         return user_serializer.data
+    
+#Serializers for FHIR app
+class FhirEndpointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FhirEndpoint
+        fields = ('name', 'url', 'redirect_uri', 'scope', 'client_id')
+        
+class FhirAgencySerializer(serializers.ModelSerializer):
+    endpoints = FhirEndpointSerializer(many=True)
+
+    class Meta:
+        model = Agency
+        fields = ('name', 'endpoints')
+        
+class FhirProviderClientsSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source='user.first_name')
+    last_name = serializers.CharField(source='user.last_name')
+    endpoints = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Client
+        fields = ('first_name', 'last_name', 'endpoints', 'cerner_sandbox_patientId')
+
+    def get_endpoints(self, obj):
+        endpoints = set()
+        for agency in obj.agencies.all():
+            for endpoint in agency.endpoints.all():
+                endpoints.add(endpoint)
+        return FhirEndpointSerializer(endpoints, many=True).data
+
+
+#New serializers below
+
