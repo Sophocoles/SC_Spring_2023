@@ -1,7 +1,5 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
-
 function Stats () {
     var numNights = 10;
     var numClients = 10;
@@ -10,7 +8,7 @@ function Stats () {
     var numStableHousing = 10;
     
     return(
-        <div className="pageWrapper">
+    
             
             <div className="statsContent">
                 <h2>Number of Nights Spent at Homeless Shelters Participating in SC?</h2>
@@ -24,7 +22,7 @@ function Stats () {
                 <h2>Number of Nights Spent at Homeless Shelters Participating in SC?</h2>
                 <p>{numStableHousing}</p> 
             </div>
-        </div>
+     
         
     );
 }

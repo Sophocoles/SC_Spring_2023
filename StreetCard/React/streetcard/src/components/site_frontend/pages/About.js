@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 
 import './pages.css';
 
@@ -8,8 +7,7 @@ import image2 from './images/techHelp.png';
 
 function About () {
     return (
-        <div className='pageWrapper'>
-            
+      
             <div className='aboutSection'>
                 <h2 className='aboutHeader'>StreetCard is Streamlining Benefits Access for Homeless Persons!</h2>
 
@@ -31,7 +29,7 @@ function About () {
                     Etiam volutpat fermentum ex ut luctus.
                 </p>
             </div>
-        </div>
+       
     );
 };
 

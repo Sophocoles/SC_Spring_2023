@@ -1,10 +1,9 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
 
 function Assist (){
     return(
-        <div id="pageWrapper">
+        
            
             <div id="assistContent">
                 <div id="websiteHelp">
@@ -18,7 +17,7 @@ function Assist (){
                     <p>ANSWER</p>
                 </div>
             </div>
-        </div>
+      
     );
 }
 

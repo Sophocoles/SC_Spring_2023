@@ -1,10 +1,8 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
-
 function Contact (){
     return(
-        <div id="pageWrapper">
+    
            
             <div id="contactContent">
                 <div id="contactLinks">
@@ -14,7 +12,7 @@ function Contact (){
                     <h3>phone numbers, P.O. boxes</h3>
                 </div>
             </div>
-        </div>
+
     );
 }
 

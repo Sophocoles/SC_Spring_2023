@@ -113,7 +113,7 @@ export const logout = navigate => dispatch => {
     })
     .catch(error => {
       dispatch(unsetCurrentUser());
-      toastOnError(error);
+     // toastOnError(error);
     });
 };
 

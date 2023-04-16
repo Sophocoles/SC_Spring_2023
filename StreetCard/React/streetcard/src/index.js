@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
-import reportWebVitals from './components/FHIR/reportWebVitals';
+import reportWebVitals from './components/reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import "react-toastify/dist/ReactToastify.css";
 import Root from "./Root"; // Import Root from the correct path

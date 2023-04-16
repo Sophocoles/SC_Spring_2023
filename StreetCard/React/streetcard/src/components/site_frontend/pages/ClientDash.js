@@ -1,10 +1,8 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
-
 function ClientDash() {
     return (
-        <div className="pageWrapper">
+      
            
             <div className="DashboardContent">
                 <div className="appointmentCalender">
@@ -17,7 +15,7 @@ function ClientDash() {
                     <p>This is for the JOB applications</p>
                 </div>
             </div>
-        </div>
+       
     );
 }
 

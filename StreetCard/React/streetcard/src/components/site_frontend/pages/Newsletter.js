@@ -1,33 +1,47 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import { Router, Link } from 'react-router-dom';
 
 function Newsletter () {
     return (
         <div id='pageWrapper'>
-            
+        
             <div className='newsContent'>
                 <div className='newsHeader'>
                     <h2> Welcome to the StreetCard Newsletter! </h2>
                 </div>
                 <div className='newsFeed'>
                     <div className='newsEntry'>
-                        <h3> - INSERT DATE AND TITLE HERE -</h3>
-                        <p> - INSERT NEWSLETTER CONTENT FOR SPECIFIC DATE HERE - </p>
+                        <Link to='/'>
+                            <h3> - INSERT DATE AND TITLE HERE -</h3>
+                            <p> - INSERT NEWSLETTER CONTENT FOR SPECIFIC DATE HERE - </p>
+                            <div className='entryImgContainer'>
+                                <p>image here</p>
+                            </div>
+                        </Link>
                     </div>
                     
                     <div className='newsEntry'>
                         <h3> - INSERT DATE AND TITLE HERE -</h3>
                         <p> - INSERT NEWSLETTER CONTENT FOR SPECIFIC DATE HERE - </p>
+                        <div className='entryImgContainer'>
+                            <p>image here</p>
+                        </div>
                     </div>
 
                     <div className='newsEntry'>
                         <h3> - INSERT DATE AND TITLE HERE -</h3>
                         <p> - INSERT NEWSLETTER CONTENT FOR SPECIFIC DATE HERE - </p>
+                        <div className='entryImgContainer'>
+                            <p>image here</p>
+                        </div>
                     </div>
 
                     <div className='newsEntry'>
                         <h3> - INSERT DATE AND TITLE HERE -</h3>
                         <p> - INSERT NEWSLETTER CONTENT FOR SPECIFIC DATE HERE - </p>
+                        <div className='entryImgContainer'>
+                            <p>image here</p>
+                        </div>
                     </div>
                 </div>
             </div>

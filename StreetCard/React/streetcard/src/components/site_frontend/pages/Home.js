@@ -1,17 +1,16 @@
-import Navbar from '../components/Navbar';
 import Slideshow from '../components/Slideshow';
+
 
 function Home() {
     return (
-        <div className='pageWrapper'>
             <div className='top'>
-                
-                <Slideshow />
+
+            <div className='siteBanner'>
+                <img src={require('./images/skylineBannerCrop.jpg')} className='homeImage' alt='banner'/>
             </div>
-            <div className="home" style={{ color: `#fff7de` }}>
+            <div className="home">
                 <div className='homeHeader'>
-                    <h2>StreetCard</h2>
-                    <h3> Modern Streamlining of Benefits Access for Homeless Persons </h3>
+                    <h3> Modern Streamlining of Benefits Access for Homeless Persons </h3> 
                 </div>
             
                 <div className='homeContent'>

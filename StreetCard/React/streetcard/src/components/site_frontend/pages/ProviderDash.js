@@ -1,11 +1,7 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
-
 function ProviderDash() {
     return (
-        <div className="pageWrapper">
-            
             <div className="DashboardContent">
                 <div className="tier1">
                     <div className="providerPantries">
@@ -78,7 +74,9 @@ function ProviderDash() {
                     </div>
                     <div className="providerRehabilitative">
                         <div className="bedDirectory">
-
+                            <p>
+                                Bed Directory List and Contact Info
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -86,44 +84,20 @@ function ProviderDash() {
                     <div className="providerSS">
                         <div className="providerDisabilities">
                             <h2>Disabilities Tab</h2>
-                            <p>sidnaosindasiondsoindiaosndsiaodnasdioasd
-                                asdasiodnasiodnasiodnasoidnasoidnasoidnasoidnasd
-                                pasdaosindasoidnasoidnasoidnasoidnasiodnasiodnasdas
-                                dasodnaisodasndoiasndoiasndioasndoiasndoiasndiasda
-                                sdasoidnasoidnasdioasndiansdoiasndioasndasd
-                                asdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasd
-                                asdoiasndoasindasklodnaskodnaoskdnasioubdoajsndasd
-                                asdioasdiasndoasndoiasndokasndasokdnasokdas
-                                dasdoinasodansdonasoidnasoidnasd
-                                asdiasndoasindoaisndoisndoasndkjdsnciujdbnfosdinoasi
+                            <p>
+                                Disabilities Information
                             </p>
                         </div>
                         <div className="providerEmployment">
                             <h2>Employment Tab</h2>
-                            <p>sidnaosindasiondsoindiaosndsiaodnasdioasd
-                                asdasiodnasiodnasiodnasoidnasoidnasoidnasoidnasd
-                                pasdaosindasoidnasoidnasoidnasoidnasiodnasiodnasdas
-                                dasodnaisodasndoiasndoiasndioasndoiasndoiasndiasda
-                                sdasoidnasoidnasdioasndiansdoiasndioasndasd
-                                asdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasd
-                                asdoiasndoasindasklodnaskodnaoskdnasioubdoajsndasd
-                                asdioasdiasndoasndoiasndokasndasokdnasokdas
-                                dasdoinasodansdonasoidnasoidnasd
-                                asdiasndoasindoaisndoisndoasndkjdsnciujdbnfosdinoasi
+                            <p>
+                                Employment Information
                             </p>
                         </div>
                         <div className="providerAging&Adults">
                             <h2>Aging & Adults Tab</h2>
-                            <p>sidnaosindasiondsoindiaosndsiaodnasdioasd
-                                asdasiodnasiodnasiodnasoidnasoidnasoidnasoidnasd
-                                pasdaosindasoidnasoidnasoidnasoidnasiodnasiodnasdas
-                                dasodnaisodasndoiasndoiasndioasndoiasndoiasndiasda
-                                sdasoidnasoidnasdioasndiansdoiasndioasndasd
-                                asdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasd
-                                asdoiasndoasindasklodnaskodnaoskdnasioubdoajsndasd
-                                asdioasdiasndoasndoiasndokasndasokdnasokdas
-                                dasdoinasodansdonasoidnasoidnasd
-                                asdiasndoasindoaisndoisndoasndkjdsnciujdbnfosdinoasi
+                            <p>
+                                Aging and Adults List of Patients
                             </p>
                         </div>
                     </div>
@@ -151,20 +125,12 @@ function ProviderDash() {
                 <div className="tier4">
                     <div className="legalInfo">
                         <p>
-                            soifnsoaidfndsoifnasdifnadsoifnadsoifnadsoifnadsiofnadsfinads
-                            fdasfnasdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasdfads
-                            fsdfadsfasdfadsfdasfnbadsfdasfnbgsg
-                            asdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasdadwsfd
-                            sdasoidnasoidnasdioasndiansdoiasndioasndasdSDDFA
-                            soifnsoaidfndsoifnasdifnadsoifnadsoifnadsoifnadsiofnadsfinadsASDF
-                            asdiasndoasidnasoidnasodnaskdnasjkdndioufbnsdfionsadoisandoiasdDAS
-                            fdasfnbFADS
-                            fsdfadsfasdfadsF
+                            Legal Info
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
+
     );
 }
 

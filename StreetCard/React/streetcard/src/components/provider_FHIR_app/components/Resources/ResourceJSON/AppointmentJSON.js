@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./EncounterJSON.css";
+import "./AppointmentJSON.css";
 
 const AppointmentJSON = ({ appointments }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);

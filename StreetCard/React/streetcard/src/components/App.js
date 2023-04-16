@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import Launcher from "./FHIR/react-fhir-sample-app-master/src/components/Launcher";
-import Redirect from "./FHIR/react-fhir-sample-app-master/src/components/Redirect";
-import ApptResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/ApptResources";
-import EncResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/EncResources";
-import ObsResources from "./FHIR/react-fhir-sample-app-master/src/components/Resources/ObsResources";
-import ResourceProvider from "./FHIR/react-fhir-sample-app-master/src/components/ResourceProvider";
-import DjangoDisplay from "./FHIR/Django/DjangoDisplay";
-import Display from "./FHIR/App/src/components/Display";
-import LoginPage from "./provider_app/react/pages/LoginPage";
-import PatientSelect from "./provider_app/react/pages/PatientSelect";
 
 import Home from './site_frontend/pages/Home';
 import About from './site_frontend/pages/About';
@@ -49,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />}  />
           <Route path="/login" element={<Login />}  />
-          <Route path="/patientSelect" element={<PatientSelect />} />
+
           <Route path="/" exact element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/mission" element={<Mission />} />
@@ -63,13 +53,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/assist" element={<Assist />} />
           
-          <Route path="/redirect" element={<Redirect />} />
-          <Route path="/apptResources" element={<ApptResources />} />
-          <Route path="/encResources" element={<EncResources />} />
-          <Route path="/obsResources" element={<ObsResources />} />
-          <Route path="/Launcher" element={<Launcher />} />
-          <Route path="/DjangoDisplay" element={<DjangoDisplay />} />
-          <Route path="/Display" element={<Display />} />
           <Route path="/encounter/:id" element={<EncounterDetail />} />
           <Route path="/patientOverview" element={<PatientOverview />} />
 
