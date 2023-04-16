@@ -8,8 +8,14 @@ class FhirEndpointAdmin(admin.ModelAdmin):
     def endpoint_list(self,obj):
         return ', '.join([endpoint.name for endpoint in obj.endpoints.all()])
     
+class AgencyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'contact_person')
+    
+    def agencies_list(self,obj):
+        return ', '.join([agency.name for agency in obj.agencies.all()])
+    
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone_number', 'providers_list', 'agencies_list')
+    list_display = ('user', 'providers_list', 'agencies_list')
 
     def providers_list(self, obj):
         return ', '.join([provider.user.username for provider in obj.providers.all()])
@@ -22,7 +28,7 @@ class ClientAdmin(admin.ModelAdmin):
     agencies_list.short_description = 'Agencies'
 
 class ProviderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'company_name', 'clients_list')
+    list_display = ('user', 'clients_list')
 
     def clients_list(self, obj):
         return ', '.join([client.user.username for client in obj.clients.all()])
@@ -45,5 +51,5 @@ admin.site.register(FhirEndpoint, FhirEndpointAdmin)
 admin.site.register(CustomUser)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Provider, ProviderAdmin)
-admin.site.register(Agency)
+admin.site.register(Agency, AgencyAdmin)
 

@@ -43,7 +43,6 @@ class CustomUser(AbstractUser):
 
 class Client(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, blank=True)
-    phone_number = models.CharField(max_length=10, blank=True)
     providers = models.ManyToManyField('Provider', blank=True)
     agencies = models.ManyToManyField(Agency, related_name='agency_clients', blank=True)
     
@@ -61,7 +60,6 @@ class Client(models.Model):
 
 class Provider(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, blank=True)
-    company_name = models.CharField(max_length=100, blank=True)
     clients = models.ManyToManyField('Client', blank=True)
     
     def get_username(self, obj):
