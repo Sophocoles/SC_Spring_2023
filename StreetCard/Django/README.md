@@ -18,6 +18,7 @@ This Django project uses pipenv.
 
 python manage.py makemigrations streetcard
 python manage.py migrate streetcard
+python manage.py migrate --run-syncdb
 
 python manage.py runserver
 
@@ -25,4 +26,5 @@ make .env file in root directory and put
     PYTHONPATH=/path/to/templates/streetcard
 
 python manage.py createsuperuser
+
 

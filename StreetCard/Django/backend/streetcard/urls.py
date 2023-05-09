@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from .views.users import logout, signup, login_view, get_user_info, CustomUserViewSet, MeView, CustomTokenObtainPairView
+from .views.users import logout, signup, login_view, get_user_info, CustomUserViewSet, MeView, CustomTokenObtainPairView, ProviderListCreateView , ProviderList
 from .views.providers import provider_patients
 from rest_framework.routers import DefaultRouter
 
@@ -17,7 +17,11 @@ urlpatterns = [
     path("api/v1/users/", signup, name="signup"),
     path('api/v1/users/me/', MeView.as_view(), name='my_view'),
     path("api/v1/token/login/", CustomTokenObtainPairView.as_view(), name="token_obtain_pair"),
-        
+    
+    #Provider directory views
+    path('providers/', ProviderListCreateView.as_view(), name='provider-create'),
+    path('providers/list/', ProviderList.as_view(), name='provider-list'),
+    
     #Get user info
     path('api/user_info/', get_user_info, name='user_info'),
     

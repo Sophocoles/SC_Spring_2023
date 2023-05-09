@@ -14,6 +14,12 @@ class FhirEndpoint(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Service(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 class Agency(models.Model):
     name = models.CharField(max_length=100)
@@ -42,7 +48,8 @@ class CustomUser(AbstractUser):
         return self.username
 
 class Client(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, blank=True)
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)   
     providers = models.ManyToManyField('Provider', blank=True)
     agencies = models.ManyToManyField(Agency, related_name='agency_clients', blank=True)
     
@@ -59,8 +66,19 @@ class Client(models.Model):
         return self.user.username
 
 class Provider(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, blank=True)
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)    
     clients = models.ManyToManyField('Client', blank=True)
+    provider_type = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    services = models.ManyToManyField(Service, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    hours = models.CharField(max_length=255, blank=True)
+    contact_person = models.CharField(max_length=255, blank=True)
+    website = models.URLField(blank=True)
+    is_participant = models.BooleanField(blank=True)
+    other_services = models.TextField(blank=True)
     
     def get_username(self, obj):
         return obj.user.first_name

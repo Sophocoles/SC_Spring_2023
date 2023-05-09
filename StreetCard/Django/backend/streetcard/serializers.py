@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser, Provider, Client, Agency, FhirEndpoint
+from .models import CustomUser, Provider, Client, Agency, FhirEndpoint, Service
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.models import update_last_login
@@ -33,6 +33,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         print("Access token:", data['access'])
 
         return data
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = '__all__'
     
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,9 +45,22 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProviderSerializer(serializers.ModelSerializer):
+    services = ServiceSerializer(many=True)
+
     class Meta:
         model = Provider
         fields = '__all__'
+        extra_kwargs = {
+            'user': {'required': False},
+        }
+        
+    def create(self, validated_data):
+        services_data = validated_data.pop('services')
+        provider = Provider.objects.create(**validated_data)
+        for service_data in services_data:
+            service, _ = Service.objects.get_or_create(**service_data)
+            provider.services.add(service)
+        return provider
         
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:

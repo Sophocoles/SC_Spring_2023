@@ -3,7 +3,7 @@ from streetcard.models import Provider, Client, Agency
 from streetcard.serializers import ProviderSerializer, ClientSerializer, AgencySerializer, ProviderClientsSerializer, FhirEndpointSerializer, FhirAgencySerializer, FhirProviderClientsSerializer
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from rest_framework import status
+from rest_framework import status, generics
 from django.views.decorators.http import require_http_methods
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
@@ -23,4 +23,6 @@ def provider_patients(request):
         "patients": client_serializer.data,
     }
     return JsonResponse(response_data, safe=False)
+
+
 

@@ -23,8 +23,8 @@ import Login from "./django/auth/login/Login";
 import ProviderFHIR from "./provider_FHIR_app/pages/ProviderFHIR";
 import PatientOverview from "./provider_FHIR_app/pages/PatientOverview";
 
-
-
+import ProviderFormPage from "./provider_directory/providerformpage";
+import ProviderListPage from "./provider_directory/providerlistpage";
 
 function App() {
 
@@ -57,6 +57,9 @@ function App() {
           <Route path="/patientOverview" element={<PatientOverview />} />
 
           <Route path="/providerPatients" element={<ProviderFHIR />} />
+
+          <Route path="/providerForm" exact element={<ProviderFormPage />} />
+          <Route path="/providers" element={<ProviderListPage />} />
         </Routes>
       
     </div>

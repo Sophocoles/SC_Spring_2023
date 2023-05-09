@@ -6,11 +6,11 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from django.db import models
 from rest_framework.permissions import IsAuthenticated
-from streetcard.models import CustomUser
-from streetcard.serializers import CustomUserSerializer, CustomTokenObtainPairSerializer  
+from streetcard.models import CustomUser, Provider
+from streetcard.serializers import CustomUserSerializer, CustomTokenObtainPairSerializer, ProviderSerializer  
 
 from rest_framework.views import APIView
 
@@ -158,3 +158,11 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 def logout(request):
     django_logout(request)
     return Response({"detail": "Logged out successfully"}, status=status.HTTP_200_OK)
+
+class ProviderListCreateView(generics.ListCreateAPIView):
+    queryset = Provider.objects.all()
+    serializer_class = ProviderSerializer
+
+class ProviderList(generics.ListAPIView):
+    queryset = Provider.objects.all()
+    serializer_class = ProviderSerializer
