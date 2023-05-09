@@ -37,6 +37,7 @@ const Navbar = () => {
 
       <div className="navbar__links">
         <Link className="links" to="/">Home</Link>
+        <Link className="links" to="/providers">Provider Directory</Link>
         <Link className="links" to="/about">About</Link>
         <Link className="links" to="/mission">Mission</Link>
         <Link className="links" to="/newsletter">Newsletter</Link>
@@ -45,11 +46,11 @@ const Navbar = () => {
         <Link className="links" to="/stats">Statistics</Link>
         <Link className="links" to="/help">How Can I Help?</Link>
         <Link className="links" to="/contact">Contact</Link>
-        <Link className="links" to="/assist">Technical Assistance</Link>
+        <Link className="links" to="/assist">Support</Link>
 
         {auth.user?.userData ? (
             <>
-                <span className="user-name">{auth.user.userData.first_name}</span>
+                <Link className="links" to="/providerPatients"><span className="user-name">{auth.user.userData.first_name}</span></Link>
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
             </>
             ) : (

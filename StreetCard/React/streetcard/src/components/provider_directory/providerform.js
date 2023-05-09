@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import './formStyle.css'
+import './formStyle.css';
 import { providerTypes, services } from './constants';
 
 

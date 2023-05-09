@@ -1,5 +1,6 @@
 import React from "react";
 import ProviderForm from "./providerform";
+import './formStyle.css';
 
 const ProviderFormPage =() => {
     return (
